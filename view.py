@@ -1,6 +1,7 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
 import os
+from werkzeug import secure_filename
 
 @app.route('/')
 def StartWithHello():
@@ -19,6 +20,7 @@ def say_hello():
             'body': 'I have more commits than Shubas'
         }
             ]
+
     return render_template("index.html",
         title = 'This is',
         user = user,
@@ -26,12 +28,24 @@ def say_hello():
 
 @app.route('/user/')
 def read_file():
-    from settings import APP_STATIC
-    open_file = open(os.path.join(APP_STATIC, 'some_file.txt'))
-    read_value = open_file.read()
-    open_file.close()
-    return  render_template('index.html',
-                            read_value = read_value)
+  #  from settings import APP_STATIC
+   # open_file = open(os.path.join(APP_STATIC, 'some_file.txt'))
+   # data = open_file.read()
+    #print(open_file())
+    with open(os.path.join('/Users/nikita/PycharmProjects/app/assert', 'some_file.txt')) as value:
+        read_value = value.read()
+    return  render_template('index.html', read_value = read_value)
 
 
+@app.route('/user/')
+def upload_file():
+    return render_template('upload.html')
+
+
+@app.route('/user/', methods=['GET', 'POST'])
+def upload_files():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return 'file uploaded successfully'
 
