@@ -24,11 +24,14 @@ def say_hello():
         user = user,
         posts = posts)
 
+@app.route('/user/')
 def read_file():
     from settings import APP_STATIC
-    with open(os.path.join(APP_STATIC, 'some_file.txt')) as f:
-        f.read()
-    return  render_template('base.html')
+    open_file = open(os.path.join(APP_STATIC, 'some_file.txt'))
+    read_value = open_file.read()
+    open_file.close()
+    return  render_template('index.html',
+                            read_value = read_value)
 
 
 
