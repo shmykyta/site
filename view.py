@@ -12,15 +12,15 @@ def StartWithHello():
 
 @app.route('/user/')
 def say_hello():
-    user = { 'nickname': 'Shubas' }
+    user = { 'nickname': 'Shubin' }
     posts = [
         {
-            'author': {'nickname': 'Shubas'},
+            'author': {'nickname': 'Shubin'},
             'body': 'This is my start in web-dev'
         },
         {
             'author': {'nickname': 'Mokich'},
-            'body': 'I have more commits than Shubas'
+            'body': 'I have more commits than Shubin'
         }
             ]
 
