@@ -1,13 +1,25 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>Hi, {{user.nickname}}!</h1>
-<h1>this is value from file - {{read_value}}</h1>
-<form action = "http://localhost:5000/user/" method = "POST"
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-</form>
-{% for post in posts %}
+<html>
+  <head>
+    <title>{{title}} - is my first project</title>
+    <link rel="stylesheet" href="{{url_for('css_static', filename='style.css')}}">
+  </head>
+  <body>
+    <div> Look like a navigation: <a href="/">Home</a></div>
+    <h1>upload your file here</h1>
+    <form id="uploadform" method="post" enctype="multipart/form-data">
+        <label for="file">Select a file</label>
+        <input name="file" type="file">
+        <button id="submit" type="button">Upload</button>
+    </form>
+    <p>Result Filename:&nbsp;<span id="resultFilename">here</span></p>
+    <p>Result Filesize:&nbsp;<span id="resultFilesize">here</span></p>
+    <p>Result Hashsum:&nbsp;<span id="resulthashf">here</span></p>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="{{url_for('js_static', filename='app.js')}}"></script>
+    <h1>some fun</h1>
+    {% for post in posts %}
 <div><p>{{post.author.nickname}} says: <b>{{post.body}}</b></p></div>
-{% endfor %}
-{% endblock %}
+    {% endfor %}
+  </body>
+</html>
+

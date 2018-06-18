@@ -1,0 +1,28 @@
+body {
+    background-color: #bbb;
+    padding: 0;
+    margin: 0;
+}
+
+#main {
+    width: 960px;
+    margin: 0 auto;
+    background-color: red;
+}
+
+#menu {
+    padding: 5 px 10 px;
+    background-color: #ddd;
+    text-align: center;
+}
+
+#content: {
+    padding: 10px;
+}
+
+#footer: {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10 px;
+}
