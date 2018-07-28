@@ -4,6 +4,8 @@ import os
 from werkzeug import secure_filename
 import hashlib
 
+
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 @app.route('/')
@@ -12,25 +14,24 @@ def StartWithHello():
 
 @app.route('/user/')
 def say_hello():
-    user = { 'nickname': 'Shubin' }
     posts = [
         {
-            'author': {'nickname': 'Shubin'},
-            'body': 'This is my start in web-dev'
+            'main': 'Task',
+            'body': 'Show information about file include hashsum'
         },
         {
-            'author': {'nickname': 'Mokich'},
-            'body': 'I have more commits than Shubin'
+            'main': 'Result',
+            'body': 'seems working'
         }
             ]
 
     return render_template("index.html",
         title = 'Upload files',
-        user = user,
         posts = posts)
 
 app.config['ALLOWED_EXTENSIONS'] = set(['doc', 'docx', 'txt', 'pdf', 'png', 'jpg'])
-app.config['MAX_CONTENT_LENGTH'] =  10 * 1024
+app.config['MAX_CONTENT_LENGTH'] =  1024 * 1024 * 10
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
@@ -64,12 +65,11 @@ def css_static(filename):
 def js_static(filename):
     return send_from_directory(app.root_path + '/static/js/', filename)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/uploadajax', methods=['POST'])
+@app.route('/uploadajax', methods=['POST', 'GET'])
 def upldfile():
     if request.method == 'POST':
         files = request.files['file']
@@ -79,7 +79,10 @@ def upldfile():
             updir = os.path.join(basedir, 'upload/')
             files.save(os.path.join(updir, filename))
             file_size = os.path.getsize(os.path.join(updir, filename))
-            return jsonify(name=filename, size=file_size)
+            hashsum = hashlib.md5(filename.encode('utf-8')).hexdigest()
+            with open('upload/Link.txt', 'w') as file:
+                file.write(hashsum)
+            return jsonify(name=filename, size=file_size, hashsum=hashsum)
 
 
 

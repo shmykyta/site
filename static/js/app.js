@@ -16,8 +16,9 @@ $(function() {
             console.log('Success!');
             $("#resultFilename").text(data['name']);
             $("#resultFilesize").text(data['size']);
+            $("#resulthashsum").text(data['hashsum']);
         }).fail(function(data){
-            alert('error!');
+            alert('error, your file biggest than 10 MB');
         });
     });
 });

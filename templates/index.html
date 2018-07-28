@@ -5,21 +5,21 @@
   </head>
   <body>
     <div> Look like a navigation: <a href="/">Home</a></div>
+    <h1 >Project number one</h1>
+    {% for post in posts %}
+    <div><p>{{post.main}} ---> <b>{{post.body}}</b></p></div>
+    {% endfor %}
     <h1>upload your file here</h1>
     <form id="uploadform" method="post" enctype="multipart/form-data">
         <label for="file">Select a file</label>
         <input name="file" type="file">
         <button id="submit" type="button">Upload</button>
     </form>
-    <p>Result Filename:&nbsp;<span id="resultFilename">here</span></p>
-    <p>Result Filesize:&nbsp;<span id="resultFilesize">here</span></p>
-    <p>Result Hashsum:&nbsp;<span id="resulthashf">here</span></p>
+    <p>Result Filename:&nbsp;<span id="resultFilename">No_file</span></p>
+    <p>Result Filesize:&nbsp;<span id="resultFilesize">0</span></p>
+    <p>Result Hashsum_new: <span id="resulthashsum">0</span></p>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="{{url_for('js_static', filename='app.js')}}"></script>
-    <h1>some fun</h1>
-    {% for post in posts %}
-<div><p>{{post.author.nickname}} says: <b>{{post.body}}</b></p></div>
-    {% endfor %}
   </body>
 </html>
 
