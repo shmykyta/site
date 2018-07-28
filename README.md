@@ -1,4 +1,4 @@
-calculate hashsum
+simple website for calcutating hash sum on python 🐍  
 
 #install flask
 
