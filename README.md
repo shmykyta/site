@@ -1,10 +1,13 @@
-simple website for calcutating hash sum on python 🐍  
+# simple website for calcutating hash sum on python 🐍  
 
-#install flask
+### install flask
 
+```
 pip install flask
+```
+### run application
 
-#run application
-
+```
 export FLASK_APP=run.py
 flask run
+```
