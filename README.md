@@ -1,4 +1,4 @@
-# simple website for calcutating hash sum on python 🐍  
+# simple website for calcutating hash sum on python 
 
 ### install flask
 
