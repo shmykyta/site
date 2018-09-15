@@ -10,7 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 @app.route('/')
 def StartWithHello():
-    return '<h1>This is root page, nothing to do here</h1>'
+    return '<h1>This is root page, nothing to do here, go to /user</h1>'
 
 @app.route('/user/')
 def say_hello():
@@ -83,6 +83,4 @@ def upldfile():
             with open('upload/Link.txt', 'w') as file:
                 file.write(hashsum)
             return jsonify(name=filename, size=file_size, hashsum=hashsum)
-
-
 
