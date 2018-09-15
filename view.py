@@ -10,7 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 @app.route('/')
 def StartWithHello():
-    return '<h1>This is root page, nothing to do here, go to /user</h1>'
+    return '<h1>This is root page, nothing to do here, go to <a href="/user">/user</a></h1>'
 
 @app.route('/user/')
 def say_hello():
